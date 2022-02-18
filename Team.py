@@ -1,10 +1,13 @@
+from Player import Player
+
+
 class Team():
   
-  def __init__(self, name, position, coach, players = [], captin= 0, playersNumber=0):
+  def __init__(self, name, position, coach, players = [], captin= None, playersNumber=0):
     self.__name__ = name
     self.__position__ = position
     self.__coach__ = coach
-    self.__players__ = players
+    self.__players__ = []
     self.__captin__ = captin
     self.__playersNumber__ = playersNumber
   
@@ -91,9 +94,45 @@ class Team():
   #####################
   
   def printTeamData(self):
-    
     print('My team is {} \n and my position in league is {} and my coach is {} and my players are {} and my captin is {} and my players number is {}'.format(self.Name, self.Position, self.coach, self.players, self.captin, self.playersNumber))
   
   
   def printCaptainInfo(self):
-    self.captin.printPlayerData()
+    # self.captin.printPlayerData()
+    print("captin printPlayerData")
+    
+  def addPlayer(self, name, number, salaryPerWeek, signingDate, contractDuration, matchesPlayed):
+    for x in self.players:
+      if x.PlayerNumber == number:
+        print("change the player number")
+        return
+    player = Player(name, number, signingDate, salaryPerWeek, contractDuration, matchesPlayed)
+    self.__players__.append(player)
+    self.playersNumber +=1
+    # self.modifyCaptin()
+      
+  def modifyCaptin(self, bonus, matchesNumber):
+    # todo excract player with highest played matches
+    self.captin.Bonus = bonus
+    
+  def deletePlayer(self, pNumber):
+    for player in self.players:
+      if player.PlayerNumber == pNumber:
+        self.players.remove(player)
+        self.playersNumber -=1
+        return
+      else: 
+        print("No player exists with this number")
+        
+  def searchPlayer(self, pNumber):
+    for player in self.players:
+      if player.PlayerNumber == pNumber:
+        player.printPlayerData()
+        return
+        
+  def calcAllSalary(self):
+    # todo should calculate all salaries
+    print("All Salaries")
+    
+  def __len__(self):
+    return self.playersNumber
