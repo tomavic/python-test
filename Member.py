@@ -1,18 +1,15 @@
-from abc import ABC
-
+from abc import ABC, abstractmethod
 
 class Member(ABC):
-    def __init__(self, name):
-      self.__name__ = name
-    
-    @property
-    def Name(self):
-      return self.__name__
-    
-    @Name.setter
-    def Name(self, value):
-      self.__name__ = value
-    
-    @Name.deleter
-    def Name(self):
-      del self.__name__
+  
+  @abstractmethod
+  def printPlayerData(self):
+    pass
+  
+  @abstractmethod
+  def calcSalaryPerYear(self):
+    pass
+  
+  @abstractmethod
+  def calcRemainingDuration(self):
+    pass
